@@ -54,3 +54,25 @@ app.post('/createuser' , (req,res)=>{
 app.listen(3000, ()=>{
     console.log('server has running on port 3000')
 })
+
+
+app.post('/updateuser/:id', (req,res)=>{
+    let id = req.params.id
+    let name = req.body.name
+
+    if(!name){
+        return res.status(404).json({
+            success:false,
+            message:'data has not found....'
+        })
+    }
+
+    users[id] = name
+
+    res.status(200).json({
+        message:'data updated successfully...',
+        success:true,
+        users
+    })
+
+})
